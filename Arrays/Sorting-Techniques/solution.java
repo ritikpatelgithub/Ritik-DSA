@@ -51,4 +51,37 @@ int [] arr={1,5,3,5,6,12,34,22,2,24,4,8};
             arr[j+1]=key;
         }
     }
+public static void mergeSort(int [] arr){
+        if (arr.length==1){
+            return;
+        }
+        int [] left =new int[arr.length/2];
+        int [] right=new int[arr.length-left.length];
+        for (int i=0;i<left.length;i++){
+            left[i]=arr[i];
+        }
+        for(int i=0;i<right.length;i++){
+            right[i]=arr[left.length+i];
+        }
+        mergeSort(left);
+        mergeSort(right);
+        merge(left,right,arr);
+
+    }
+    public static void merge(int [] a,int [] b,int [] c){
+        int i=0,j=0,k=0;
+        while(i<a.length && j<b.length){
+            if (a[i]<b[j]){
+                c[k++]=a[i++];
+            }else{
+                c[k++]=b[j++];
+            }
+        }
+        while (i<a.length){
+            c[k++]=a[i++];
+        }
+        while (j<b.length){
+            c[k++]=b[j++];
+        }
+    }
 }
