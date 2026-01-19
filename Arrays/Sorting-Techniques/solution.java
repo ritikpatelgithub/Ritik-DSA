@@ -5,7 +5,8 @@ public class SortingTechniques {
 int [] arr={1,5,3,5,6,12,34,22,2,24,4,8};
       //  bubbleSort(arr);
        // selectionSort(arr);
-        insertionSort(arr);
+       // mergeSort(arr);
+        quickSort(arr,0,arr.length-1);
        // System.out.println(Arrays.toString(arr));
         Arrays.stream(arr).forEach(value -> System.out.print(value+" "));
     }
@@ -51,7 +52,7 @@ int [] arr={1,5,3,5,6,12,34,22,2,24,4,8};
             arr[j+1]=key;
         }
     }
-public static void mergeSort(int [] arr){
+    public static void mergeSort(int [] arr){
         if (arr.length==1){
             return;
         }
@@ -83,5 +84,30 @@ public static void mergeSort(int [] arr){
         while (j<b.length){
             c[k++]=b[j++];
         }
+    }
+    public static void quickSort(int [] arr,int start,int end){
+        if (start>=end){
+            return;
+        }
+        int i=start,j=end;
+        int pivot=arr[(start+end)/2];
+        while (i<=j){
+            while (arr[i]<pivot){
+                i++;
+            }
+            while (arr[j]>pivot){
+                j--;
+            }
+            if (i<=j){
+                int temp=arr[i];
+                arr[i]=arr[j];
+                arr[j]=temp;
+                i++;
+                j--;
+            }
+
+        }
+        quickSort(arr,start,j);
+        quickSort(arr,i,end);
     }
 }
